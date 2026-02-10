@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mentra AI | AI Business Certification</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --dark-bg: #0B1120;
+  --dark-surface: #111827;
+  --dark-card: #1A2332;
+  --brand-blue: #00A3E0;
+  --brand-blue-light: #4DC8F0;
+  --accent-teal: #00C9B7;
+  --white: #FFFFFF;
+  --gray-100: #F4F7FA;
+  --gray-300: #D0D8E4;
+  --gray-400: #8A96A8;
+  --gray-600: #4A5568;
+  --body-text: #C5CDD8;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--dark-bg);
+  color: var(--body-text);
+  overflow-x: hidden;
+}
+
+/* ── NOISE OVERLAY ── */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  background: rgba(11, 17, 32, 0.85);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(0, 163, 224, 0.1);
+  padding: 0 48px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-logo {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 800;
+  font-size: 22px;
+  color: var(--white);
+  letter-spacing: -0.5px;
+}
+
+.nav-logo span { color: var(--brand-blue); }
+
+.nav-links { display: flex; gap: 32px; align-items: center; }
+
+.nav-links a {
+  color: var(--gray-400);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.nav-links a:hover { color: var(--white); }
+
+.nav-cta {
+  background: var(--brand-blue);
+  color: var(--white) !important;
+  padding: 8px 20px;
+  border-radius: 6px;
+  font-weight: 600 !important;
+  transition: all 0.3s !important;
+}
+
+.nav-cta:hover {
+  background: var(--brand-blue-light) !important;
+  transform: translateY(-1px);
+}
+
+/* ── HERO ── */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 120px 48px 80px;
+  overflow: hidden;
+}
+
+.hero-glow {
+  position: absolute;
+  width: 600px; height: 600px;
+  border-radius: 50%;
+  filter: blur(150px);
+  opacity: 0.15;
+  pointer-events: none;
+}
+
+.hero-glow-1 {
+  top: -100px; right: -100px;
+  background: var(--brand-blue);
+}
+
+.hero-glow-2 {
+  bottom: -200px; left: -100px;
+  background: var(--accent-teal);
+  opacity: 0.08;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.hero-text { animation: fadeInUp 0.8s ease-out; }
+
+.hero-badge {
+  display: inline-block;
+  background: rgba(0, 163, 224, 0.12);
+  border: 1px solid rgba(0, 163, 224, 0.25);
+  color: var(--brand-blue-light);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 6px 16px;
+  border-radius: 50px;
+  margin-bottom: 24px;
+}
+
+.hero h1 {
+  font-family: 'Outfit', sans-serif;
+  font-size: 52px;
+  font-weight: 800;
+  color: var(--white);
+  line-height: 1.1;
+  letter-spacing: -1.5px;
+  margin-bottom: 20px;
+}
+
+.hero h1 .highlight {
+  background: linear-gradient(135deg, var(--brand-blue), var(--accent-teal));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero p {
+  font-size: 17px;
+  line-height: 1.7;
+  color: var(--gray-400);
+  margin-bottom: 32px;
+  max-width: 500px;
+}
+
+.hero-buttons { display: flex; gap: 16px; }
+
+.btn-primary {
+  background: var(--brand-blue);
+  color: var(--white);
+  padding: 14px 32px;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background: var(--brand-blue-light);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(0, 163, 224, 0.3);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--white);
+  padding: 14px 32px;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+  border: 1px solid rgba(255,255,255,0.15);
+  transition: all 0.3s;
+}
+
+.btn-secondary:hover {
+  border-color: var(--brand-blue);
+  background: rgba(0, 163, 224, 0.08);
+}
+
+/* Hero visual - abstract certification graphic */
+.hero-visual {
+  position: relative;
+  animation: fadeInUp 0.8s ease-out 0.2s both;
+}
+
+.cert-card {
+  background: linear-gradient(145deg, var(--dark-card), rgba(0, 163, 224, 0.08));
+  border: 1px solid rgba(0, 163, 224, 0.2);
+  border-radius: 16px;
+  padding: 40px;
+  position: relative;
+  overflow: hidden;
+}
+
+.cert-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--brand-blue), var(--accent-teal));
+}
+
+.cert-card-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--brand-blue-light);
+  margin-bottom: 12px;
+}
+
+.cert-card-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 24px;
+}
+
+.cert-modules {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.cert-modules li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+  color: var(--body-text);
+}
+
+.mod-num {
+  width: 28px; height: 28px;
+  background: var(--brand-blue);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--white);
+  flex-shrink: 0;
+}
+
+.mod-num.leadership {
+  background: var(--accent-teal);
+}
+
+.leader-tag {
+  background: var(--accent-teal);
+  color: var(--white);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  padding: 2px 8px;
+  border-radius: 20px;
+  text-transform: uppercase;
+}
+
+/* ── PROBLEM SECTION ── */
+.section {
+  position: relative;
+  z-index: 1;
+  padding: 100px 48px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section-label {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--brand-blue);
+  margin-bottom: 16px;
+}
+
+.section h2 {
+  font-family: 'Outfit', sans-serif;
+  font-size: 38px;
+  font-weight: 700;
+  color: var(--white);
+  letter-spacing: -1px;
+  margin-bottom: 20px;
+  line-height: 1.2;
+}
+
+.section-desc {
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--gray-400);
+  max-width: 600px;
+  margin-bottom: 48px;
+}
+
+/* ── PROBLEM CARDS ── */
+.problem-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.problem-card {
+  background: var(--dark-card);
+  border: 1px solid rgba(208, 216, 228, 0.08);
+  border-radius: 12px;
+  padding: 28px;
+  transition: all 0.4s;
+}
+
+.problem-card:hover {
+  border-color: rgba(0, 163, 224, 0.3);
+  transform: translateY(-4px);
+}
+
+.problem-icon {
+  width: 40px; height: 40px;
+  background: rgba(0, 163, 224, 0.1);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+  font-size: 18px;
+}
+
+.problem-card h3 {
+  font-family: 'Outfit', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--white);
+  margin-bottom: 8px;
+}
+
+.problem-card p {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--gray-400);
+}
+
+/* ── DIVIDER ── */
+.divider {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 48px;
+  position: relative;
+  z-index: 1;
+}
+
+.divider-line {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(0, 163, 224, 0.2), transparent);
+}
+
+/* ── INSTRUCTORS ── */
+.instructors-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.instructor-card {
+  background: var(--dark-card);
+  border: 1px solid rgba(208, 216, 228, 0.08);
+  border-radius: 12px;
+  padding: 36px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s;
+}
+
+.instructor-card:hover {
+  border-color: rgba(0, 163, 224, 0.2);
+}
+
+.instructor-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+}
+
+.instructor-card.tech::before { background: var(--brand-blue); }
+.instructor-card.training::before { background: var(--accent-teal); }
+
+.instructor-role {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.instructor-card.tech .instructor-role { color: var(--brand-blue-light); }
+.instructor-card.training .instructor-role { color: var(--accent-teal); }
+
+.instructor-name {
+  font-family: 'Outfit', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 12px;
+}
+
+.instructor-bio {
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--gray-400);
+}
+
+/* ── MODULES DETAIL ── */
+.modules-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.module-card {
+  background: var(--dark-card);
+  border: 1px solid rgba(208, 216, 228, 0.08);
+  border-radius: 12px;
+  padding: 24px;
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  transition: all 0.4s;
+}
+
+.module-card:hover {
+  border-color: rgba(0, 163, 224, 0.2);
+  transform: translateY(-2px);
+}
+
+.module-card.leadership {
+  border-color: rgba(0, 201, 183, 0.2);
+  background: linear-gradient(145deg, var(--dark-card), rgba(0, 201, 183, 0.04));
+}
+
+.module-number {
+  width: 36px; height: 36px;
+  background: var(--brand-blue);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--white);
+  flex-shrink: 0;
+}
+
+.module-card.leadership .module-number { background: var(--accent-teal); }
+
+.module-info h3 {
+  font-family: 'Outfit', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--white);
+  margin-bottom: 4px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.module-info p {
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--gray-400);
+}
+
+/* ── PATHS ── */
+.paths-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.path-card {
+  background: var(--dark-card);
+  border: 1px solid rgba(208, 216, 228, 0.08);
+  border-radius: 12px;
+  padding: 36px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s;
+}
+
+.path-card:hover { border-color: rgba(0, 163, 224, 0.2); }
+
+.path-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+}
+
+.path-card:first-child::before { background: var(--brand-blue); }
+.path-card:last-child::before { background: var(--accent-teal); }
+
+.path-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.path-card:first-child .path-label { color: var(--brand-blue-light); }
+.path-card:last-child .path-label { color: var(--accent-teal); }
+
+.path-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 12px;
+}
+
+.path-desc {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--gray-400);
+}
+
+/* ── COHORT ── */
+.cohort-banner {
+  background: linear-gradient(135deg, var(--dark-card), rgba(0, 163, 224, 0.06));
+  border: 1px solid rgba(0, 163, 224, 0.15);
+  border-radius: 16px;
+  padding: 48px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: center;
+  margin-top: 48px;
+}
+
+.cohort-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 16px;
+  line-height: 1.3;
+}
+
+.cohort-desc {
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--gray-400);
+}
+
+.cohort-features {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.cohort-features li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 15px;
+  color: var(--body-text);
+}
+
+.cohort-check {
+  width: 24px; height: 24px;
+  background: rgba(0, 201, 183, 0.15);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent-teal);
+  font-size: 13px;
+  flex-shrink: 0;
+}
+
+/* ── CTA ── */
+.cta-section {
+  text-align: center;
+  padding: 100px 48px;
+  position: relative;
+  z-index: 1;
+}
+
+.cta-section h2 {
+  font-family: 'Outfit', sans-serif;
+  font-size: 42px;
+  font-weight: 800;
+  color: var(--white);
+  letter-spacing: -1px;
+  margin-bottom: 16px;
+}
+
+.cta-section p {
+  font-size: 17px;
+  color: var(--gray-400);
+  margin-bottom: 36px;
+}
+
+/* ── FOOTER ── */
+footer {
+  position: relative;
+  z-index: 1;
+  border-top: 1px solid rgba(208, 216, 228, 0.06);
+  padding: 32px 48px;
+  text-align: center;
+}
+
+footer p {
+  font-size: 13px;
+  color: var(--gray-400);
+}
+
+footer a {
+  color: var(--brand-blue-light);
+  text-decoration: none;
+}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s ease-out;
+}
+
+.animate.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  .hero-content, .instructors-grid, .modules-grid, .paths-grid, .cohort-banner {
+    grid-template-columns: 1fr;
+  }
+  .hero h1 { font-size: 36px; }
+  .section h2 { font-size: 28px; }
+  .problem-grid { grid-template-columns: 1fr; }
+  nav { padding: 0 24px; }
+  .section, .hero { padding-left: 24px; padding-right: 24px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <svg width="28" height="28" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" style="vertical-align: middle; margin-right: 8px;">
+      <circle cx="20" cy="20" r="18" stroke="url(#logoGrad)" stroke-width="2.5" fill="none"/>
+      <!-- center node -->
+      <circle cx="20" cy="20" r="3.8" fill="#00C9B7"/>
+      <!-- top-right node -->
+      <circle cx="28" cy="12" r="3" fill="#4DC8F0"/>
+      <line x1="22" y1="18" x2="26" y2="13.5" stroke="#4DC8F0" stroke-width="2" stroke-linecap="round"/>
+      <!-- bottom-right node -->
+      <circle cx="29" cy="26" r="2.5" fill="#00A3E0"/>
+      <line x1="23" y1="21.5" x2="27.5" y2="25" stroke="#00A3E0" stroke-width="2" stroke-linecap="round"/>
+      <!-- left node -->
+      <circle cx="11" cy="16" r="2.8" fill="#00D4C8"/>
+      <line x1="17" y1="19" x2="13" y2="17" stroke="#00D4C8" stroke-width="2" stroke-linecap="round"/>
+      <!-- bottom-left node -->
+      <circle cx="14" cy="28" r="2.3" fill="#3BB8E0"/>
+      <line x1="18.5" y1="22.5" x2="15.5" y2="27" stroke="#3BB8E0" stroke-width="2" stroke-linecap="round"/>
+      <!-- top-left node -->
+      <circle cx="13" cy="10" r="2" fill="#00E0D0"/>
+      <line x1="17.5" y1="18" x2="14.5" y2="11.5" stroke="#00E0D0" stroke-width="1.8" stroke-linecap="round"/>
+      <defs>
+        <linearGradient id="logoGrad" x1="5" y1="5" x2="35" y2="35">
+          <stop offset="0%" stop-color="#00A3E0"/>
+          <stop offset="50%" stop-color="#00C9B7"/>
+          <stop offset="100%" stop-color="#4DC8F0"/>
+        </linearGradient>
+      </defs>
+    </svg><span>M</span>entra<span> AI</span>
+  </div>
+  <div class="nav-links">
+    <a href="#problem">Why AI Training</a>
+    <a href="#instructors">Instructors</a>
+    <a href="#modules">Modules</a>
+    <a href="#paths">Certification</a>
+    <a href="#contact" class="nav-cta">Get Started</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-glow hero-glow-1"></div>
+  <div class="hero-glow hero-glow-2"></div>
+  <div class="hero-content">
+    <div class="hero-text">
+      <div class="hero-badge">Mentra AI Business Certification</div>
+      <h1>Your Team Deserves<br><span class="highlight">AI Fluency.</span></h1>
+      <p>Most companies use AI for grammar checks and email drafts. Their competitors are automating workflows, accelerating decisions, and unlocking new capabilities. It's time to close the gap.</p>
+      <div class="hero-buttons">
+        <a href="#contact" class="btn-primary">Request a Consultation</a>
+        <a href="#modules" class="btn-secondary">Explore Modules</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="cert-card">
+        <div class="cert-card-label">Certification Program</div>
+        <div class="cert-card-title">6 Guided Modules</div>
+        <ul class="cert-modules">
+          <li><span class="mod-num">1</span> The Psychology of AI</li>
+          <li><span class="mod-num">2</span> AI Foundations</li>
+          <li><span class="mod-num">3</span> AI in Your Workflow</li>
+          <li><span class="mod-num">4</span> Advanced AI Techniques</li>
+          <li><span class="mod-num">5</span> AI Innovation & Strategy</li>
+          <li><span class="mod-num leadership">6</span> The AI-Ready Leader <span class="leader-tag">Senior Leaders</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEM -->
+<div class="divider"><div class="divider-line"></div></div>
+<section class="section" id="problem">
+  <div class="section-label animate">The Problem</div>
+  <h2 class="animate">AI Isn't Optional Anymore.</h2>
+  <p class="section-desc animate">Your competitors aren't waiting. The gap between companies using AI strategically and those still figuring it out is growing every week.</p>
+  <div class="problem-grid">
+    <div class="problem-card animate">
+      <div class="problem-icon">😰</div>
+      <h3>Fear & Uncertainty</h3>
+      <p>Employees are afraid of AI or simply don't know where to start.</p>
+    </div>
+    <div class="problem-card animate">
+      <div class="problem-icon">📧</div>
+      <h3>Surface-Level Use</h3>
+      <p>Teams use AI for trivial tasks and miss the transformative opportunities.</p>
+    </div>
+    <div class="problem-card animate">
+      <div class="problem-icon">🗺️</div>
+      <h3>No Roadmap</h3>
+      <p>Companies lack a structured path from AI curiosity to AI competency.</p>
+    </div>
+    <div class="problem-card animate">
+      <div class="problem-icon">📊</div>
+      <h3>Unmeasurable ROI</h3>
+      <p>Leadership doesn't know how to measure AI adoption or return on investment.</p>
+    </div>
+    <div class="problem-card animate">
+      <div class="problem-icon">🔒</div>
+      <h3>Security Concerns</h3>
+      <p>Data privacy worries block experimentation before it even starts.</p>
+    </div>
+    <div class="problem-card animate">
+      <div class="problem-icon">⚙️</div>
+      <h3>No Integration Framework</h3>
+      <p>No clear path for integrating AI into existing workflows and processes.</p>
+    </div>
+  </div>
+</section>
+
+<!-- INSTRUCTORS -->
+<div class="divider"><div class="divider-line"></div></div>
+<section class="section" id="instructors">
+  <div class="section-label animate">Your Instructors</div>
+  <h2 class="animate">Built by Experts Who Build and Teach.</h2>
+  <p class="section-desc animate">One brings 25+ years of software engineering and is now on the cutting edge of AI innovation at MIT Lincoln Laboratory. The other brings 20+ years of designing training programs that actually work. Together, they built something neither could alone.</p>
+  <div class="instructors-grid">
+    <div class="instructor-card tech animate">
+      <div class="instructor-role">The Technology</div>
+      <div class="instructor-name">William (Tim) Heath</div>
+      <p class="instructor-bio">Senior Software Engineer at MIT Lincoln Laboratory. 25+ years across defense, aerospace, and robotics at Raytheon and Terrafugia. University-level educator and certification instructor. Builds with cutting-edge AI tools daily, designing curriculum from the front lines of innovation.</p>
+    </div>
+    <div class="instructor-card training animate">
+      <div class="instructor-role">The Training</div>
+      <div class="instructor-name">Terah Bromley</div>
+      <p class="instructor-bio">20+ years designing and delivering corporate training programs across 10+ countries. Has trained executives in insurance, oil and gas, and government sectors. Transforms complex content into structured, engaging programs people actually complete.</p>
+    </div>
+  </div>
+</section>
+
+<!-- MODULES -->
+<div class="divider"><div class="divider-line"></div></div>
+<section class="section" id="modules">
+  <div class="section-label animate">The Curriculum</div>
+  <h2 class="animate">Six Modules. One Certification.</h2>
+  <p class="section-desc animate">Each module includes guided video instruction, hands-on exercises, and quiz-based assessments. Participants must pass each module before advancing.</p>
+  <div class="modules-grid">
+    <div class="module-card animate">
+      <div class="module-number">1</div>
+      <div class="module-info">
+        <h3>The Psychology of AI</h3>
+        <p>Break through the fear barrier and build an AI-positive culture from leadership down.</p>
+      </div>
+    </div>
+    <div class="module-card animate">
+      <div class="module-number">2</div>
+      <div class="module-info">
+        <h3>AI Foundations</h3>
+        <p>Demystify LLMs, prompt engineering, and real productivity use cases beyond email and grammar.</p>
+      </div>
+    </div>
+    <div class="module-card animate">
+      <div class="module-number">3</div>
+      <div class="module-info">
+        <h3>AI in Your Workflow</h3>
+        <p>Map your daily work to find AI acceleration points for every role in your organization.</p>
+      </div>
+    </div>
+    <div class="module-card animate">
+      <div class="module-number">4</div>
+      <div class="module-info">
+        <h3>Advanced AI Techniques</h3>
+        <p>Power-user skills: custom agents, automation, image and video generation, and API integration.</p>
+      </div>
+    </div>
+    <div class="module-card animate">
+      <div class="module-number">5</div>
+      <div class="module-info">
+        <h3>AI Innovation & Strategy</h3>
+        <p>Build a business case, governance framework, and AI transformation plan for your organization.</p>
+      </div>
+    </div>
+    <div class="module-card leadership animate">
+      <div class="module-number">6</div>
+      <div class="module-info">
+        <h3>The AI-Ready Leader <span class="leader-tag">Senior Leaders</span></h3>
+        <p>Champion AI adoption: give teams time to experiment, run internal AI hackathons, and build a culture of innovation.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PATHS & COHORT -->
+<div class="divider"><div class="divider-line"></div></div>
+<section class="section" id="paths">
+  <div class="section-label animate">Certification</div>
+  <h2 class="animate">Two Paths. Ongoing Growth.</h2>
+  <p class="section-desc animate">Choose the track that fits your organization's security needs. Both lead to the same certification.</p>
+  <div class="paths-grid">
+    <div class="path-card animate">
+      <div class="path-label">Path A</div>
+      <div class="path-title">Local & Open-Source AI</div>
+      <p class="path-desc">For organizations with strict data privacy requirements. All tools run locally. No data leaves your network. Includes free, open-source LLM tools, local GPU-powered inference, and air-gapped AI workflows.</p>
+    </div>
+    <div class="path-card animate">
+      <div class="path-label">Path B</div>
+      <div class="path-title">Frontier AI Tools</div>
+      <p class="path-desc">For organizations ready to leverage leading cloud-based AI platforms. Enterprise-grade capabilities including AI image and video generation, API integrations, and automation workflows.</p>
+    </div>
+  </div>
+
+  <div class="cohort-banner animate">
+    <div>
+      <div class="cohort-title">Certification + 6-Month AI Cohort</div>
+      <p class="cohort-desc">The learning doesn't stop at certification. Graduates join an ongoing cohort through the Mentra platform to stay ahead as AI evolves.</p>
+    </div>
+    <ul class="cohort-features">
+      <li><span class="cohort-check">✓</span> Earn the Mentra AI Business Certification</li>
+      <li><span class="cohort-check">✓</span> 6-month cohort with curated articles and tools</li>
+      <li><span class="cohort-check">✓</span> Up-to-date content delivered through Mentra</li>
+      <li><span class="cohort-check">✓</span> Updated courses offered each cycle</li>
+    </ul>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="divider"><div class="divider-line"></div></div>
+<section class="cta-section" id="contact">
+  <h2 class="animate">Ready to Make Your<br>Team AI-Ready?</h2>
+  <p class="animate">Contact us to schedule a consultation and custom program design.</p>
+  <a href="https://www.almaph.net" class="btn-primary animate" target="_blank">Get Started</a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>Mentra &mdash; Microtraining & Workforce Development &mdash; A platform by <a href="https://www.almaph.net" target="_blank">ALMA LLC</a></p>
+</footer>
+
+<!-- SCROLL ANIMATIONS -->
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry, index) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => {
+        entry.target.classList.add('visible');
+      }, index * 80);
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.animate').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
